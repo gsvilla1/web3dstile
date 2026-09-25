@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { productCategories } from "@/data/site";
 
 const navItems = [
-  { label: "Галерея", to: "/#gallery" },
   { label: "О технологии", to: "/technology" },
   { label: "Наши награды", to: "/awards" },
   { label: "Контакты", to: "/contacts" },
@@ -37,6 +36,7 @@ export function SiteHeader() {
               ))}
             </div>
           </div>
+          <a href="/#gallery" className="text-xs font-semibold uppercase text-steel hover:text-navy">Галерея</a>
           {navItems.map((item) => <Link key={item.label} to={item.to} className="text-xs font-semibold uppercase text-steel hover:text-navy">{item.label}</Link>)}
         </nav>
 
@@ -56,6 +56,7 @@ export function SiteHeader() {
             </div>
           </details>
           <div className="grid gap-1 pt-3">
+            <a href="/#gallery" onClick={() => setOpen(false)} className="py-2 text-xs font-semibold uppercase text-steel">Галерея</a>
             {navItems.map((item) => <Link key={item.label} to={item.to} onClick={() => setOpen(false)} className="py-2 text-xs font-semibold uppercase text-steel">{item.label}</Link>)}
             <Button variant="header" asChild className="mt-3 sm:hidden"><a href="https://max.ru" target="_blank" rel="noopener noreferrer">Стать партнёром</a></Button>
           </div>
