@@ -10,33 +10,154 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AwardsRouteImport } from './routes/awards'
+import { Route as ContactsRouteImport } from './routes/contacts'
+import { Route as TechnologyRouteImport } from './routes/technology'
+import { Route as ProductsArtPhotoPanelsRouteImport } from './routes/products.art-photo-panels'
+import { Route as ProductsFacadePanelsRouteImport } from './routes/products.facade-panels'
+import { Route as ProductsFloorTilesRouteImport } from './routes/products.floor-tiles'
+import { Route as ProductsInteriorArtRouteImport } from './routes/products.interior-art'
+import { Route as ProductsInteriorPanelsRouteImport } from './routes/products.interior-panels'
+import { Route as ProductsWallTilesRouteImport } from './routes/products.wall-tiles'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AwardsRoute = AwardsRouteImport.update({
+  id: '/awards',
+  path: '/awards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactsRoute = ContactsRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TechnologyRoute = TechnologyRouteImport.update({
+  id: '/technology',
+  path: '/technology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsArtPhotoPanelsRoute = ProductsArtPhotoPanelsRouteImport.update({
+  id: '/products/art-photo-panels',
+  path: '/products/art-photo-panels',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsFacadePanelsRoute = ProductsFacadePanelsRouteImport.update({
+  id: '/products/facade-panels',
+  path: '/products/facade-panels',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsFloorTilesRoute = ProductsFloorTilesRouteImport.update({
+  id: '/products/floor-tiles',
+  path: '/products/floor-tiles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsInteriorArtRoute = ProductsInteriorArtRouteImport.update({
+  id: '/products/interior-art',
+  path: '/products/interior-art',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsInteriorPanelsRoute = ProductsInteriorPanelsRouteImport.update({
+  id: '/products/interior-panels',
+  path: '/products/interior-panels',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsWallTilesRoute = ProductsWallTilesRouteImport.update({
+  id: '/products/wall-tiles',
+  path: '/products/wall-tiles',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/awards': typeof AwardsRoute
+  '/contacts': typeof ContactsRoute
+  '/technology': typeof TechnologyRoute
+  '/products/art-photo-panels': typeof ProductsArtPhotoPanelsRoute
+  '/products/facade-panels': typeof ProductsFacadePanelsRoute
+  '/products/floor-tiles': typeof ProductsFloorTilesRoute
+  '/products/interior-art': typeof ProductsInteriorArtRoute
+  '/products/interior-panels': typeof ProductsInteriorPanelsRoute
+  '/products/wall-tiles': typeof ProductsWallTilesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/awards': typeof AwardsRoute
+  '/contacts': typeof ContactsRoute
+  '/technology': typeof TechnologyRoute
+  '/products/art-photo-panels': typeof ProductsArtPhotoPanelsRoute
+  '/products/facade-panels': typeof ProductsFacadePanelsRoute
+  '/products/floor-tiles': typeof ProductsFloorTilesRoute
+  '/products/interior-art': typeof ProductsInteriorArtRoute
+  '/products/interior-panels': typeof ProductsInteriorPanelsRoute
+  '/products/wall-tiles': typeof ProductsWallTilesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/awards': typeof AwardsRoute
+  '/contacts': typeof ContactsRoute
+  '/technology': typeof TechnologyRoute
+  '/products/art-photo-panels': typeof ProductsArtPhotoPanelsRoute
+  '/products/facade-panels': typeof ProductsFacadePanelsRoute
+  '/products/floor-tiles': typeof ProductsFloorTilesRoute
+  '/products/interior-art': typeof ProductsInteriorArtRoute
+  '/products/interior-panels': typeof ProductsInteriorPanelsRoute
+  '/products/wall-tiles': typeof ProductsWallTilesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/awards'
+    | '/contacts'
+    | '/technology'
+    | '/products/art-photo-panels'
+    | '/products/facade-panels'
+    | '/products/floor-tiles'
+    | '/products/interior-art'
+    | '/products/interior-panels'
+    | '/products/wall-tiles'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/awards'
+    | '/contacts'
+    | '/technology'
+    | '/products/art-photo-panels'
+    | '/products/facade-panels'
+    | '/products/floor-tiles'
+    | '/products/interior-art'
+    | '/products/interior-panels'
+    | '/products/wall-tiles'
+  id:
+    | '__root__'
+    | '/'
+    | '/awards'
+    | '/contacts'
+    | '/technology'
+    | '/products/art-photo-panels'
+    | '/products/facade-panels'
+    | '/products/floor-tiles'
+    | '/products/interior-art'
+    | '/products/interior-panels'
+    | '/products/wall-tiles'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AwardsRoute: typeof AwardsRoute
+  ContactsRoute: typeof ContactsRoute
+  TechnologyRoute: typeof TechnologyRoute
+  ProductsArtPhotoPanelsRoute: typeof ProductsArtPhotoPanelsRoute
+  ProductsFacadePanelsRoute: typeof ProductsFacadePanelsRoute
+  ProductsFloorTilesRoute: typeof ProductsFloorTilesRoute
+  ProductsInteriorArtRoute: typeof ProductsInteriorArtRoute
+  ProductsInteriorPanelsRoute: typeof ProductsInteriorPanelsRoute
+  ProductsWallTilesRoute: typeof ProductsWallTilesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +169,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/awards': {
+      id: '/awards'
+      path: '/awards'
+      fullPath: '/awards'
+      preLoaderRoute: typeof AwardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacts': {
+      id: '/contacts'
+      path: '/contacts'
+      fullPath: '/contacts'
+      preLoaderRoute: typeof ContactsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/technology': {
+      id: '/technology'
+      path: '/technology'
+      fullPath: '/technology'
+      preLoaderRoute: typeof TechnologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/art-photo-panels': {
+      id: '/products/art-photo-panels'
+      path: '/products/art-photo-panels'
+      fullPath: '/products/art-photo-panels'
+      preLoaderRoute: typeof ProductsArtPhotoPanelsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/facade-panels': {
+      id: '/products/facade-panels'
+      path: '/products/facade-panels'
+      fullPath: '/products/facade-panels'
+      preLoaderRoute: typeof ProductsFacadePanelsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/floor-tiles': {
+      id: '/products/floor-tiles'
+      path: '/products/floor-tiles'
+      fullPath: '/products/floor-tiles'
+      preLoaderRoute: typeof ProductsFloorTilesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/interior-art': {
+      id: '/products/interior-art'
+      path: '/products/interior-art'
+      fullPath: '/products/interior-art'
+      preLoaderRoute: typeof ProductsInteriorArtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/interior-panels': {
+      id: '/products/interior-panels'
+      path: '/products/interior-panels'
+      fullPath: '/products/interior-panels'
+      preLoaderRoute: typeof ProductsInteriorPanelsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/wall-tiles': {
+      id: '/products/wall-tiles'
+      path: '/products/wall-tiles'
+      fullPath: '/products/wall-tiles'
+      preLoaderRoute: typeof ProductsWallTilesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AwardsRoute: AwardsRoute,
+  ContactsRoute: ContactsRoute,
+  TechnologyRoute: TechnologyRoute,
+  ProductsArtPhotoPanelsRoute: ProductsArtPhotoPanelsRoute,
+  ProductsFacadePanelsRoute: ProductsFacadePanelsRoute,
+  ProductsFloorTilesRoute: ProductsFloorTilesRoute,
+  ProductsInteriorArtRoute: ProductsInteriorArtRoute,
+  ProductsInteriorPanelsRoute: ProductsInteriorPanelsRoute,
+  ProductsWallTilesRoute: ProductsWallTilesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
