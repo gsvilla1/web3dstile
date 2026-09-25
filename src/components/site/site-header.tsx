@@ -8,9 +8,18 @@ import { Button } from "@/components/ui/button";
 import { productCategories } from "@/data/site";
 
 const navItems = [
-  { label: "О технологии", to: "/technology" },
-  { label: "Наши награды", to: "/awards" },
-  { label: "Контакты", to: "/contacts" },
+  { label: "О технологии", to: "/#technology" },
+  { label: "Наши награды", to: "/#awards" },
+  { label: "Контакты", to: "/#contacts" },
+] as const;
+
+const productAnchors = [
+  "interior-panels",
+  "facade-panels",
+  "wall-tiles",
+  "floor-tiles",
+  "interior-art",
+  "art-photo-panels",
 ] as const;
 
 export function SiteHeader() {
@@ -31,13 +40,13 @@ export function SiteHeader() {
               Наша продукция <ChevronDown className="size-4" aria-hidden="true" />
             </button>
             <div className="invisible absolute left-0 top-full w-64 border border-border bg-background p-2 opacity-0 shadow-lg group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-              {productCategories.map((item) => (
-                <Link key={item.to} to={item.to} className="block px-3 py-2.5 text-xs font-semibold uppercase text-steel hover:bg-paper hover:text-navy">{item.label}</Link>
+              {productCategories.map((item, index) => (
+                <a key={item.to} href={`/#${productAnchors[index]}`} className="block px-3 py-2.5 text-xs font-semibold uppercase text-steel hover:bg-paper hover:text-navy">{item.label}</a>
               ))}
             </div>
           </div>
           <a href="/#gallery" className="text-xs font-semibold uppercase text-steel hover:text-navy">Галерея</a>
-          {navItems.map((item) => <Link key={item.label} to={item.to} className="text-xs font-semibold uppercase text-steel hover:text-navy">{item.label}</Link>)}
+          {navItems.map((item) => <a key={item.label} href={item.to} className="text-xs font-semibold uppercase text-steel hover:text-navy">{item.label}</a>)}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -52,12 +61,12 @@ export function SiteHeader() {
           <details className="border-b border-border pb-3">
             <summary className="flex cursor-pointer list-none items-center justify-between py-2 text-xs font-semibold uppercase text-ink">Наша продукция <ChevronDown className="size-4" /></summary>
             <div className="grid gap-1 pt-2">
-              {productCategories.map((item) => <Link key={item.to} to={item.to} onClick={() => setOpen(false)} className="py-2 pl-3 text-xs font-semibold uppercase text-steel">{item.label}</Link>)}
+               {productCategories.map((item, index) => <a key={item.to} href={`/#${productAnchors[index]}`} onClick={() => setOpen(false)} className="py-2 pl-3 text-xs font-semibold uppercase text-steel">{item.label}</a>)}
             </div>
           </details>
           <div className="grid gap-1 pt-3">
             <a href="/#gallery" onClick={() => setOpen(false)} className="py-2 text-xs font-semibold uppercase text-steel">Галерея</a>
-            {navItems.map((item) => <Link key={item.label} to={item.to} onClick={() => setOpen(false)} className="py-2 text-xs font-semibold uppercase text-steel">{item.label}</Link>)}
+             {navItems.map((item) => <a key={item.label} href={item.to} onClick={() => setOpen(false)} className="py-2 text-xs font-semibold uppercase text-steel">{item.label}</a>)}
             <Button variant="header" asChild className="mt-3 sm:hidden"><a href="https://max.ru" target="_blank" rel="noopener noreferrer">Стать партнёром</a></Button>
           </div>
         </nav>
