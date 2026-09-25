@@ -25,10 +25,15 @@ export const Route = createFileRoute("/")({
 });
 
 const slides = [
-  { title: "Фасады зданий", image: heroStadiumAsset.url, alt: "Современный фасад с объёмными панелями" },
-  { title: "Коммерческий интерьер", image: heroLobbyAsset.url, alt: "Лобби с рельефным декором" },
-  { title: "Интерьер частного дома", image: heroPanelAsset.url, alt: "Интерьер с объёмной декоративной поверхностью" },
-  { title: "Влажные помещения", image: interiorAsset.url, alt: "Интерьер с настенной плиткой 3DsTile" },
+  { title: "Интерьерные и фасадные панели", description: "Объёмные 3D-панели для акцентных стен. Панель формирует живую поверхность, которая «движется» при смене точки зрения и источника света.", image: heroStadiumAsset.url, alt: "Современный фасад с объёмными панелями" },
+  { title: "Напольная и настенная плитка", description: "3D-плитка: от плоского к впечатляющему. Идеально подходит для ванных комнат, кухонь и общественных зон.", image: interiorAsset.url, alt: "Интерьер с настенной плиткой 3DsTile" },
+  { title: "Интерьерные картины и фото", description: "Объём, эмоция, движение. Декор, который притягивает взгляд.", image: heroPanelAsset.url, alt: "Интерьерная картина с объёмным изображением" },
+];
+
+const productGroups = [
+  { title: "Интерьерные и фасадные панели", text: "Панели от компании 3DsTile — универсальный дизайнерский приём: от жилых интерьеров и офисов до наружной отделки фасадов. Легко монтируются и идеально подходят для акцентных стен.", image: heroStadiumAsset.url },
+  { title: "Напольная и настенная плитка", text: "Трёхмерная плитка для стен и пола — актуальный тренд в дизайне интерьеров. Доступна в готовых сериях и под индивидуальный заказ.", image: heroLobbyAsset.url },
+  { title: "Интерьерные картины и фото", text: "Авторские картины и печать ваших фото в нашей технологии гармонично дополнят интерьер, подчеркнув уникальный стиль и индивидуальность вашего дома и рабочего пространства.", image: heroPanelAsset.url },
 ];
 
 const audiences = [
@@ -57,17 +62,19 @@ function Index() {
               <div className="mt-8 flex flex-wrap gap-3"><Button variant="hero" size="lg" asChild><a href="#gallery">Смотреть галерею</a></Button><Button variant="heroOutline" size="lg" asChild><Link to="/technology">О технологии</Link></Button></div>
             </div>
             <div className="col-span-12 lg:col-span-7">
-              <div className="relative overflow-hidden rounded-[8px]"><img src={current.image} alt={current.alt} width={1672} height={941} className="h-auto w-full" /><div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent px-5 pb-5 pt-20"><p className="font-display text-2xl font-semibold uppercase">{current.title}</p></div></div>
+              <div className="relative overflow-hidden rounded-[8px]"><img src={current.image} alt={current.alt} width={1672} height={941} className="h-auto w-full" /><div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 to-transparent px-5 pb-5 pt-24"><p className="font-display text-2xl font-semibold uppercase">{current.title}</p><p className="mt-2 max-w-[64ch] text-sm leading-relaxed text-hero-foreground/80">{current.description}</p></div></div>
             </div>
           </div>
           <div className="mt-10 flex items-center justify-between gap-5 border-t border-hero-foreground/15 pt-6">
             <div className="flex items-center gap-2"><Button variant="carousel" size="icon" onClick={() => selectSlide(-1)} aria-label="Предыдущий слайд"><ArrowLeft /></Button><Button variant="carousel" size="icon" onClick={() => selectSlide(1)} aria-label="Следующий слайд"><ArrowRight /></Button></div>
-            <div className="flex min-w-0 items-center gap-4"><span className="font-display text-xl">{String(slide + 1).padStart(2, "0")} / 04</span><span className="truncate text-sm text-hero-foreground/50">Далее: {next.title}</span></div>
+            <div className="flex min-w-0 items-center gap-4"><span className="font-display text-xl">{String(slide + 1).padStart(2, "0")} / 03</span><span className="truncate text-sm text-hero-foreground/50">Далее: {next.title}</span></div>
           </div>
         </div>
       </section>
 
       <section className="bg-paper"><div className="mx-auto grid max-w-[1440px] grid-cols-12 gap-8 px-5 py-16 lg:gap-12 lg:px-10 lg:py-24"><div className="col-span-12 lg:col-span-4"><p className="text-sm font-semibold uppercase text-navy">Технология</p><h2 className="mt-4 text-balance font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">Объём. Глубина. Динамика.</h2></div><div className="col-span-12 lg:col-span-8"><p className="max-w-[58ch] leading-relaxed text-steel">Материалы 3DsTile создают ощущение глубины за счёт оптических слоёв и рельефа. При смене угла зрения поверхность раскрывается по-новому.</p><div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-[8px] bg-border sm:grid-cols-4">{[["30", "дней изготовление"], ["10", "лет гарантии"], ["3D", "эффект глубины"], ["360°", "панорамный обзор"]].map(([value, label]) => <div key={label} className="bg-paper p-6"><p className="font-display text-4xl font-semibold text-navy">{value}</p><p className="mt-2 text-sm text-steel">{label}</p></div>)}</div></div></div></section>
+
+      <section className="bg-background"><div className="mx-auto max-w-[1440px] px-5 py-16 lg:px-10 lg:py-24"><p className="text-sm font-semibold uppercase text-navy">Наша продукция</p><h2 className="mt-4 font-display text-3xl font-semibold text-ink sm:text-4xl">Материалы для уникального пространства</h2><div className="mt-10 grid gap-8 lg:grid-cols-3">{productGroups.map((item) => <article key={item.title} className="border-t border-border pt-5"><img src={item.image} alt={item.title} className="aspect-[4/3] w-full rounded-[8px] object-cover" /><h3 className="mt-6 font-display text-2xl font-semibold text-ink">{item.title}</h3><p className="mt-3 text-sm leading-relaxed text-steel">{item.text}</p></article>)}</div></div></section>
 
       <section className="bg-ink text-hero-foreground"><div className="mx-auto max-w-[1440px] px-5 py-16 lg:px-10 lg:py-24"><p className="text-sm font-semibold uppercase text-hero-foreground/50">Решения для пространства</p><h2 className="mt-4 font-display text-3xl font-semibold sm:text-4xl">Для кого мы создаём</h2><div className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-[8px] bg-hero-foreground/10 sm:grid-cols-2 lg:grid-cols-4">{audiences.map(([title, text], index) => <article key={title} className="bg-ink p-6"><p className="font-display text-lg text-hero-foreground/40">{String(index + 1).padStart(2, "0")}</p><h3 className="mt-4 font-display text-xl">{title}</h3><p className="mt-2 text-sm leading-relaxed text-hero-foreground/60">{text}</p></article>)}</div></div></section>
 
