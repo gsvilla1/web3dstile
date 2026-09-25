@@ -2,11 +2,15 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Menu } from "lucide-react";
 import { useState } from "react";
 
-import heroCommercial from "@/assets/hero-commercial.jpg";
-import heroFacade from "@/assets/hero-facade.jpg";
-import heroHome from "@/assets/hero-home.jpg";
-import heroWet from "@/assets/hero-wet.jpg";
-import productMaterials from "@/assets/product-materials.jpg";
+import facadeAsset from "@/assets/originals/facade.png.asset.json";
+import heroLobbyAsset from "@/assets/originals/hero-lobby.webp.asset.json";
+import heroPanelAsset from "@/assets/originals/hero-panel.jpg.asset.json";
+import heroStadiumAsset from "@/assets/originals/hero-stadium.webp.asset.json";
+import interiorAsset from "@/assets/originals/interior.png.asset.json";
+import logoAsset from "@/assets/originals/logo-3dstile-clear.png.asset.json";
+import skolkovoAsset from "@/assets/originals/logo-skolkovo-clear.png.asset.json";
+import projectInteriorAsset from "@/assets/originals/project-interior.png.asset.json";
+import roundPanelAsset from "@/assets/originals/project-round-panel.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -24,10 +28,10 @@ export const Route = createFileRoute("/")({
 });
 
 const slides = [
-  { title: "Фасады зданий", description: "Объёмные панели для облицовки фасадов. Глубина и фактура меняют восприятие архитектуры в зависимости от угла зрения и времени суток.", image: heroFacade, alt: "Современный фасад с объёмными панелями" },
-  { title: "Коммерческий интерьер", description: "Авторские декоры для ресторанов, гостиничных лобби и входных групп бизнес-центров — выразительный акцент в общественном пространстве.", image: heroCommercial, alt: "Лобби с рельефным настенным декором" },
-  { title: "Интерьер частного дома", description: "Рельефные поверхности для спальни и гостиной. Декор создаёт глубину, работает со светом и собирает интерьер в единое целое.", image: heroHome, alt: "Гостиная частного дома с рельефной стеной" },
-  { title: "Влажные помещения", description: "Практичный объёмный декор для ванной комнаты и санузла в частном доме — выразительная поверхность для ежедневного использования.", image: heroWet, alt: "Ванная комната с рельефной плиткой" },
+  { title: "Фасады зданий", description: "Объёмные панели для облицовки фасадов. Глубина и фактура меняют восприятие архитектуры в зависимости от угла зрения и времени суток.", image: heroStadiumAsset.url, alt: "Современный фасад с объёмными панелями" },
+  { title: "Коммерческий интерьер", description: "Авторские декоры для ресторанов, гостиничных лобби и входных групп бизнес-центров — выразительный акцент в общественном пространстве.", image: heroLobbyAsset.url, alt: "Лобби с рельефным настенным декором" },
+  { title: "Интерьер частного дома", description: "Рельефные поверхности для спальни и гостиной. Декор создаёт глубину, работает со светом и собирает интерьер в единое целое.", image: heroPanelAsset.url, alt: "Гостиная частного дома с рельефной стеной" },
+  { title: "Влажные помещения", description: "Практичный объёмный декор для ванной комнаты и санузла в частном доме — выразительная поверхность для ежедневного использования.", image: interiorAsset.url, alt: "Ванная комната с рельефной плиткой" },
 ];
 
 const audiences = [
@@ -38,10 +42,10 @@ const audiences = [
 ];
 
 const products = [
-  ["Интерьерные панели", "Объёмные панели для стен", heroHome],
-  ["Фасадные панели", "Облицовка наружных стен", heroFacade],
-  ["Настенная и напольная плитка", "Рельефные поверхности для помещений", heroWet],
-  ["Картины и арт-фотопанно", "Авторский интерьерный декор", productMaterials],
+  ["Интерьерные панели", "Объёмные панели для стен", projectInteriorAsset.url],
+  ["Фасадные панели", "Облицовка наружных стен", facadeAsset.url],
+  ["Настенная и напольная плитка", "Рельефные поверхности для помещений", heroLobbyAsset.url],
+  ["Картины и арт-фотопанно", "Авторский интерьерный декор", roundPanelAsset.url],
 ];
 
 function Index() {
