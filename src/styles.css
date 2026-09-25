@@ -59,6 +59,15 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-navy: var(--navy);
+  --color-ink: var(--ink);
+  --color-steel: var(--steel);
+  --color-paper: var(--paper);
+  --color-mist: var(--mist);
+  --color-hero: var(--hero);
+  --color-hero-foreground: var(--hero-foreground);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
 }
 
 :root {
@@ -95,6 +104,15 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  --navy: oklch(0.27 0.052 252.5);
+  --ink: oklch(0.25 0.018 255);
+  --steel: oklch(0.31 0.023 253);
+  --paper: oklch(0.96 0.006 88);
+  --mist: oklch(0.91 0.006 86);
+  --hero: oklch(0.27 0.052 252.5);
+  --hero-foreground: oklch(1 0 0);
+  --font-display: "Oswald", sans-serif;
+  --font-body: "Inter", sans-serif;
 }
 
 .dark {
@@ -140,5 +158,10 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-body);
+    letter-spacing: 0;
   }
+
+  html { scroll-behavior: auto; }
+  button, a { letter-spacing: 0; }
 }
