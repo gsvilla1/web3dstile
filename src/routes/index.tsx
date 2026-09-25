@@ -1,5 +1,5 @@
 import { createFileRoute, useServerFn } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, Menu } from "lucide-react";
+import { ArrowLeft, ArrowRight, Menu, MessageCircle } from "lucide-react";
 import { useState } from "react";
 
 import { submitContactRequest } from "@/lib/contact.functions";
