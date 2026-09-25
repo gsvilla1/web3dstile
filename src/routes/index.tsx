@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, Menu } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
+import { ArrowLeft, ArrowRight, Menu, MessageCircle } from "lucide-react";
 import { useState } from "react";
+
+import { submitContactRequest } from "@/lib/contact.functions";
 
 import facadeAsset from "@/assets/originals/facade.png.asset.json";
 import heroLobbyAsset from "@/assets/originals/hero-lobby.webp.asset.json";
@@ -190,13 +193,177 @@ function Index() {
 
       <section id="contacts" className="bg-navy text-hero-foreground">
         <div className="mx-auto grid max-w-[1440px] grid-cols-12 gap-8 px-5 py-16 lg:gap-12 lg:px-10 lg:py-24">
-          <div className="col-span-12 lg:col-span-6"><p className="text-sm font-semibold uppercase text-hero-foreground/50">Контакты</p><h2 className="mt-4 font-display text-3xl font-semibold sm:text-4xl">Обсудим ваш проект</h2><p className="mt-4 max-w-[44ch] leading-relaxed text-hero-foreground/70">Пришлём каталог, подберём декор под ваш объект и рассчитаем стоимость.</p></div>
-          <div className="col-span-12 grid gap-8 sm:grid-cols-2 lg:col-span-6">
-            <div><p className="text-sm text-hero-foreground/50">Телефон</p><a href="tel:+74956629850" className="mt-1 block font-display text-xl">+7 (495) 662-98-50</a><a href="tel:+79037858200" className="mt-1 block font-display text-xl text-hero-foreground/80">+7 (903) 785-82-00</a></div>
-            <div><p className="text-sm text-hero-foreground/50">Почта</p><a href="mailto:info@3dstile.com" className="mt-1 block font-display text-xl">info@3dstile.com</a><p className="mt-5 text-sm text-hero-foreground/50">Статус</p><p className="mt-1 text-sm text-hero-foreground/80">Резидент ИЦ «Сколково»</p></div>
+          <div className="col-span-12 lg:col-span-6">
+            <p className="text-sm font-semibold uppercase text-hero-foreground/50">Контакты</p>
+            <h2 className="mt-4 font-display text-3xl font-semibold sm:text-4xl">Обсудим ваш проект</h2>
+            <p className="mt-4 max-w-[44ch] leading-relaxed text-hero-foreground/70">Пришлём каталог, подберём декор под ваш объект и рассчитаем стоимость.</p>
+            <div className="mt-10 grid gap-8 sm:grid-cols-2">
+              <div>
+                <p className="text-sm text-hero-foreground/50">Телефон</p>
+                <a href="tel:+74956629850" className="mt-1 block font-display text-xl">+7 (495) 662-98-50</a>
+                <a href="tel:+79037858200" className="mt-1 block font-display text-xl text-hero-foreground/80">+7 (903) 785-82-00</a>
+                <a href="tel:+79035930855" className="mt-1 block font-display text-xl text-hero-foreground/80">+7 (903) 593-08-55</a>
+              </div>
+              <div>
+                <p className="text-sm text-hero-foreground/50">Почта</p>
+                <a href="mailto:info@3dstile.com" className="mt-1 block font-display text-xl">info@3dstile.com</a>
+                <p className="mt-5 text-sm text-hero-foreground/50">Статус</p>
+                <p className="mt-1 text-sm text-hero-foreground/80">Резидент ИЦ «Сколково»</p>
+              </div>
+            </div>
+            <div className="mt-10">
+              <p className="text-sm text-hero-foreground/50">Мы в мессенджерах — +7 (903) 593-08-55</p>
+              <div className="mt-3 flex flex-wrap gap-3">
+                {messengers.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${item.label} — написать на +7 (903) 593-08-55`}
+                    className="inline-flex items-center gap-2 rounded-[3px] border border-hero-foreground/30 px-4 py-2.5 text-sm text-hero-foreground hover:border-hero-foreground hover:bg-hero-foreground hover:text-navy"
+                  >
+                    <item.icon className="size-4" aria-hidden="true" />
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="col-span-12 lg:col-span-6">
+            <ContactForm />
           </div>
         </div>
       </section>
     </main>
+  );
+}
+
+const messengers = [
+  { label: "MAX", href: "https://max.ru", icon: MessageCircle },
+  { label: "Telegram", href: "https://t.me/+79035930855", icon: TelegramIcon },
+  { label: "WhatsApp", href: "https://wa.me/79035930855", icon: WhatsAppIcon },
+];
+
+function TelegramIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M9.04 15.51 8.9 19.1c.4 0 .57-.17.78-.38l1.87-1.8 3.88 2.85c.71.39 1.22.19 1.4-.66l2.56-12.01c.23-1.06-.38-1.47-1.08-1.21L3.6 10.7c-1.03.4-1.02.97-.18 1.23l3.78 1.18 8.78-5.54c.41-.27.79-.12.48.15z" />
+    </svg>
+  );
+}
+
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.4-1.48a9 9 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.6.14-.14.3-.35.44-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.8.38-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.49.71.3 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35M12.05 21.6h-.01a9.55 9.55 0 0 1-4.87-1.34l-.35-.2-3.62.94.97-3.52-.23-.36a9.53 9.53 0 0 1-1.46-5.08c0-5.27 4.3-9.56 9.58-9.56 2.56 0 4.96 1 6.77 2.8a9.5 9.5 0 0 1 2.8 6.77c0 5.28-4.3 9.57-9.58 9.57m8.15-17.72A11.4 11.4 0 0 0 12.05.5C5.8.5.72 5.58.72 11.82c0 2 .52 3.96 1.52 5.68L.5 23.5l6.15-1.61a11.3 11.3 0 0 0 5.4 1.37h.01c6.25 0 11.33-5.08 11.33-11.33 0-3.03-1.18-5.87-3.32-8.01" />
+    </svg>
+  );
+}
+
+type FormStatus = "idle" | "sending" | "sent" | "error";
+
+function ContactForm() {
+  const send = useServerFn(submitContactRequest);
+  const [form, setForm] = useState({ name: "", phone: "", message: "" });
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (status === "sending") return;
+
+    const name = form.name.trim();
+    const phone = form.phone.trim();
+    const message = form.message.trim();
+
+    if (!name) return setErrorAndStatus("Укажите ваше имя");
+    if (name.length > 100) return setErrorAndStatus("Имя слишком длинное");
+    if (!/^[0-9+()\-\s]{7,20}$/.test(phone)) return setErrorAndStatus("Укажите корректный номер телефона");
+    if (message.length > 1000) return setErrorAndStatus("Сообщение слишком длинное");
+
+    setError("");
+    setStatus("sending");
+    try {
+      const result = await send({ data: { name, phone, message } });
+      if (result.ok) {
+        setStatus("sent");
+        setForm({ name: "", phone: "", message: "" });
+      } else {
+        setError(result.error);
+        setStatus("error");
+      }
+    } catch {
+      setError("Не удалось отправить заявку. Позвоните нам, пожалуйста.");
+      setStatus("error");
+    }
+  };
+
+  const setErrorAndStatus = (message: string) => {
+    setError(message);
+    setStatus("error");
+  };
+
+  const inputClass = "w-full rounded-[3px] border border-border bg-paper px-4 py-3 text-sm text-ink placeholder:text-steel/60 focus:border-navy focus:outline-none";
+
+  if (status === "sent") {
+    return (
+      <div className="rounded-[8px] bg-background p-8 lg:p-10">
+        <p className="font-display text-2xl font-semibold text-ink">Заявка отправлена</p>
+        <p className="mt-3 max-w-[44ch] leading-relaxed text-steel">Спасибо! Мы получили ваше сообщение и свяжемся с вами в ближайшее время.</p>
+        <Button variant="header" className="mt-8" onClick={() => setStatus("idle")}>Отправить ещё одну заявку</Button>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="rounded-[8px] bg-background p-8 lg:p-10" noValidate>
+      <p className="font-display text-2xl font-semibold text-ink">Форма обратной связи</p>
+      <p className="mt-3 text-sm leading-relaxed text-steel">Оставьте заявку — ответим и пришлём каталог.</p>
+      <div className="mt-6 grid gap-4">
+        <label className="grid gap-1.5">
+          <span className="text-xs font-semibold uppercase text-steel">Имя</span>
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={(event) => setForm({ ...form, name: event.target.value })}
+            placeholder="Как к вам обращаться"
+            maxLength={100}
+            className={inputClass}
+          />
+        </label>
+        <label className="grid gap-1.5">
+          <span className="text-xs font-semibold uppercase text-steel">Телефон</span>
+          <input
+            type="tel"
+            name="phone"
+            value={form.phone}
+            onChange={(event) => setForm({ ...form, phone: event.target.value })}
+            placeholder="+7 (___) ___-__-__"
+            maxLength={20}
+            className={inputClass}
+          />
+        </label>
+        <label className="grid gap-1.5">
+          <span className="text-xs font-semibold uppercase text-steel">Сообщение</span>
+          <textarea
+            name="message"
+            value={form.message}
+            onChange={(event) => setForm({ ...form, message: event.target.value })}
+            placeholder="Опишите ваш проект или вопрос"
+            rows={4}
+            maxLength={1000}
+            className={inputClass}
+          />
+        </label>
+      </div>
+      {status === "error" && error ? (
+        <p role="alert" className="mt-4 text-sm font-medium text-navy">{error}</p>
+      ) : null}
+      <Button type="submit" variant="hero" size="lg" className="mt-6" disabled={status === "sending"}>
+        {status === "sending" ? "Отправляем…" : "Отправить заявку"}
+      </Button>
+    </form>
   );
 }
