@@ -42,7 +42,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <a href="tel:+74956629850" className="hidden text-sm font-medium text-ink lg:block">+7 (495) 662-98-50</a>
-          <Button variant="header" asChild className="hidden sm:inline-flex"><a href="mailto:info@3dstile.ru?subject=Стать партнёром">Стать партнёром</a></Button>
+          <Button variant="header" asChild className="hidden sm:inline-flex"><a href="https://max.ru" target="_blank" rel="noopener noreferrer">Стать партнёром</a></Button>
           <Button variant="ghost" size="icon" className="xl:hidden" onClick={() => setOpen((value) => !value)} aria-label={open ? "Закрыть меню" : "Открыть меню"}>{open ? <X /> : <Menu />}</Button>
         </div>
       </div>
@@ -57,7 +57,7 @@ export function SiteHeader() {
           </details>
           <div className="grid gap-1 pt-3">
             {navItems.map((item) => <Link key={item.label} to={item.to} onClick={() => setOpen(false)} className="py-2 text-xs font-semibold uppercase text-steel">{item.label}</Link>)}
-            <Button variant="header" asChild className="mt-3 sm:hidden"><a href="mailto:info@3dstile.ru?subject=Стать партнёром">Стать партнёром</a></Button>
+            <Button variant="header" asChild className="mt-3 sm:hidden"><a href="https://max.ru" target="_blank" rel="noopener noreferrer">Стать партнёром</a></Button>
           </div>
         </nav>
       ) : null}
