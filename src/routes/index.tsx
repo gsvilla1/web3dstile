@@ -4,15 +4,21 @@ import { useState } from "react";
 
 import facadeAsset from "@/assets/originals/facade.png.asset.json";
 import heroLobbyAsset from "@/assets/originals/hero-lobby.webp.asset.json";
+import heroMotionAsset from "@/assets/originals/hero-motion.jpg.asset.json";
 import heroPanelAsset from "@/assets/originals/hero-panel.jpg.asset.json";
 import heroStadiumAsset from "@/assets/originals/hero-stadium.webp.asset.json";
 import interiorAsset from "@/assets/originals/interior.png.asset.json";
 import logoAsset from "@/assets/originals/logo-3dstile-clear.png.asset.json";
+import marblePanelAsset from "@/assets/originals/panel-marble.jpg.asset.json";
+import panelShowcaseAsset from "@/assets/originals/panel-showcase.jpg.asset.json";
+import panelsAsset from "@/assets/originals/panels.jpg.asset.json";
 import partnersAsset from "@/assets/originals/partners.webp.asset.json";
+import processPrintAsset from "@/assets/originals/process-print.jpg.asset.json";
 import projectFacadeAsset from "@/assets/originals/project-facade.png.asset.json";
 import skolkovoAsset from "@/assets/originals/logo-skolkovo-clear.png.asset.json";
 import projectInteriorAsset from "@/assets/originals/project-interior.png.asset.json";
 import roundPanelAsset from "@/assets/originals/project-round-panel.jpg.asset.json";
+import verticalAsset from "@/assets/originals/vertical.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -44,14 +50,20 @@ const audiences = [
 ];
 
 const gallery = [
-  ["Архитектурный фасад", "Фасадные панели", heroStadiumAsset.url],
-  ["Бизнес-холл", "Напольная плитка", heroLobbyAsset.url],
-  ["Глубина фактуры", "Интерьерные картины", heroPanelAsset.url],
-  ["Премиальный интерьер", "Настенная плитка", interiorAsset.url],
-  ["Геометрия фасада", "Фасадные панели", facadeAsset.url],
-  ["Интерьерные панели", "Объёмные панели для стен", projectInteriorAsset.url],
-  ["Фасадные решения", "Архитектурные поверхности", projectFacadeAsset.url],
-  ["Круглое панно", "Интерьерные картины", roundPanelAsset.url],
+  { title: "Архитектурный фасад", category: "Фасадные панели", image: heroStadiumAsset.url, layout: "sm:col-span-2" },
+  { title: "Бизнес-холл", category: "Напольная плитка", image: heroLobbyAsset.url },
+  { title: "Глубина фактуры", category: "Интерьерные картины", image: heroPanelAsset.url },
+  { title: "Живое изображение", category: "Арт-фото панно", image: heroMotionAsset.url },
+  { title: "Премиальный интерьер", category: "Настенная плитка", image: interiorAsset.url, layout: "sm:row-span-2" },
+  { title: "Геометрия фасада", category: "Фасадные панели", image: facadeAsset.url },
+  { title: "Оптические слои", category: "Настенная плитка", image: panelsAsset.url },
+  { title: "Круглое панно", category: "Интерьерные картины", image: roundPanelAsset.url },
+  { title: "Динамическая поверхность", category: "Интерьерные панели", image: panelShowcaseAsset.url, layout: "sm:col-span-2" },
+  { title: "Индивидуальное производство", category: "Плитка", image: processPrintAsset.url },
+  { title: "Авторская фактура", category: "Интерьерные панели", image: marblePanelAsset.url },
+  { title: "Вертикальное панно", category: "Арт-фото панно", image: verticalAsset.url },
+  { title: "Входная группа", category: "Интерьерные панели", image: projectInteriorAsset.url },
+  { title: "Фасадный ритм", category: "Фасадные панели", image: projectFacadeAsset.url },
 ];
 
 function Index() {
@@ -153,8 +165,17 @@ function Index() {
         <div className="mx-auto max-w-[1440px] px-5 py-16 lg:px-10 lg:py-24">
           <p className="text-sm font-semibold uppercase text-navy">Галерея</p>
           <h2 className="mt-4 font-display text-3xl font-semibold text-ink sm:text-4xl">Материалы и реализованные проекты</h2>
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2">
-            {gallery.map(([title, text, image]) => <article key={title as string}><img src={image} alt={title as string} loading="lazy" width={1672} height={941} className="h-auto w-full rounded-[8px]" /><h3 className="mt-4 font-display text-xl font-medium text-ink">{title}</h3><p className="mt-1 text-sm text-steel">{text}</p></article>)}
+          <div className="mt-10 grid auto-rows-[220px] grid-cols-1 gap-2 sm:grid-cols-3 sm:auto-rows-[250px] lg:auto-rows-[300px]">
+            {gallery.map((item) => (
+              <figure key={item.title} className={`group relative min-h-0 overflow-hidden rounded-[8px] bg-ink ${item.layout ?? ""}`}>
+                <img src={item.image} alt={item.title} loading="lazy" className="h-full w-full object-cover" />
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/80 to-transparent" aria-hidden="true" />
+                <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-4 text-hero-foreground">
+                  <b className="max-w-[58%] font-display text-lg font-semibold leading-tight sm:text-xl">{item.title}</b>
+                  <span className="max-w-[42%] text-right text-xs uppercase leading-tight text-hero-foreground/80">{item.category}</span>
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </section>
