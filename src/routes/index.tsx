@@ -8,6 +8,8 @@ import heroPanelAsset from "@/assets/originals/hero-panel.jpg.asset.json";
 import heroStadiumAsset from "@/assets/originals/hero-stadium.webp.asset.json";
 import interiorAsset from "@/assets/originals/interior.png.asset.json";
 import logoAsset from "@/assets/originals/logo-3dstile-clear.png.asset.json";
+import partnersAsset from "@/assets/originals/partners.webp.asset.json";
+import projectFacadeAsset from "@/assets/originals/project-facade.png.asset.json";
 import skolkovoAsset from "@/assets/originals/logo-skolkovo-clear.png.asset.json";
 import projectInteriorAsset from "@/assets/originals/project-interior.png.asset.json";
 import roundPanelAsset from "@/assets/originals/project-round-panel.jpg.asset.json";
@@ -41,11 +43,15 @@ const audiences = [
   ["Общественные пространства", "Торговые центры, аэропорты и музеи."],
 ];
 
-const products = [
+const gallery = [
+  ["Архитектурный фасад", "Фасадные панели", heroStadiumAsset.url],
+  ["Бизнес-холл", "Напольная плитка", heroLobbyAsset.url],
+  ["Глубина фактуры", "Интерьерные картины", heroPanelAsset.url],
+  ["Премиальный интерьер", "Настенная плитка", interiorAsset.url],
+  ["Геометрия фасада", "Фасадные панели", facadeAsset.url],
   ["Интерьерные панели", "Объёмные панели для стен", projectInteriorAsset.url],
-  ["Фасадные панели", "Облицовка наружных стен", facadeAsset.url],
-  ["Настенная и напольная плитка", "Рельефные поверхности для помещений", heroLobbyAsset.url],
-  ["Картины и арт-фотопанно", "Авторский интерьерный декор", roundPanelAsset.url],
+  ["Фасадные решения", "Архитектурные поверхности", projectFacadeAsset.url],
+  ["Круглое панно", "Интерьерные картины", roundPanelAsset.url],
 ];
 
 function Index() {
@@ -68,7 +74,7 @@ function Index() {
             <img src={skolkovoAsset.url} alt="Резидент ИЦ Сколково" className="h-9 w-auto" />
           </a>
           <nav className="hidden items-center gap-8 md:flex" aria-label="Основная навигация">
-            <a href="#products" className="text-sm text-steel hover:text-navy">Продукция</a>
+            <a href="#gallery" className="text-sm text-steel hover:text-navy">Галерея</a>
             <a href="#technology" className="text-sm text-steel hover:text-navy">Технология</a>
             <a href="#applications" className="text-sm text-steel hover:text-navy">Решения</a>
             <a href="#contacts" className="text-sm text-steel hover:text-navy">Контакты</a>
@@ -93,12 +99,12 @@ function Index() {
               <h1 className="max-w-[9ch] text-balance font-display text-5xl font-semibold uppercase leading-none sm:text-6xl lg:text-7xl">{current.title}</h1>
               <p className="mt-6 max-w-[42ch] text-base leading-relaxed text-hero-foreground/70">{current.description}</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button variant="hero" size="lg" asChild><a href="#products">Смотреть продукцию</a></Button>
+                <Button variant="hero" size="lg" asChild><a href="#gallery">Смотреть продукцию</a></Button>
                 <Button variant="heroOutline" size="lg" asChild><a href="mailto:info@3dstile.com?subject=Запрос каталога">Получить каталог</a></Button>
               </div>
             </div>
             <div className="col-span-12 lg:col-span-7">
-              <img src={current.image} alt={current.alt} width={1200} height={912} className="aspect-[4/3] w-full rounded-[8px] object-cover" />
+              <img src={current.image} alt={current.alt} width={1672} height={941} className="h-auto w-full rounded-[8px]" />
             </div>
           </div>
           <div className="mt-10 flex items-center justify-between gap-5 border-t border-hero-foreground/15 pt-6">
@@ -143,13 +149,21 @@ function Index() {
         </div>
       </section>
 
-      <section id="products" className="bg-background">
+      <section id="gallery" className="bg-background">
         <div className="mx-auto max-w-[1440px] px-5 py-16 lg:px-10 lg:py-24">
-          <p className="text-sm font-semibold uppercase text-navy">Продукция</p>
-          <h2 className="mt-4 font-display text-3xl font-semibold text-ink sm:text-4xl">Что мы производим</h2>
-          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {products.map(([title, text, image]) => <article key={title as string}><img src={image} alt={title as string} loading="lazy" width={800} height={1000} className="aspect-[4/5] w-full rounded-[8px] object-cover" /><h3 className="mt-4 font-display text-xl font-medium text-ink">{title}</h3><p className="mt-1 text-sm text-steel">{text}</p></article>)}
+          <p className="text-sm font-semibold uppercase text-navy">Галерея</p>
+          <h2 className="mt-4 font-display text-3xl font-semibold text-ink sm:text-4xl">Материалы и реализованные проекты</h2>
+          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2">
+            {gallery.map(([title, text, image]) => <article key={title as string}><img src={image} alt={title as string} loading="lazy" width={1672} height={941} className="h-auto w-full rounded-[8px]" /><h3 className="mt-4 font-display text-xl font-medium text-ink">{title}</h3><p className="mt-1 text-sm text-steel">{text}</p></article>)}
           </div>
+        </div>
+      </section>
+
+      <section className="bg-paper" aria-labelledby="partners-title">
+        <div className="mx-auto max-w-[1440px] px-5 py-16 lg:px-10 lg:py-24">
+          <p className="text-sm font-semibold uppercase text-navy">Признание и поддержка</p>
+          <h2 id="partners-title" className="mt-4 font-display text-3xl font-semibold text-ink sm:text-4xl">Наши партнёры</h2>
+          <img src={partnersAsset.url} alt="Партнёры и организации, поддерживающие 3DsTile" loading="lazy" className="mt-10 h-auto w-full rounded-[8px] border border-border bg-background" />
         </div>
       </section>
 
