@@ -63,8 +63,9 @@ function Index() {
       <header className="border-b border-border bg-background">
         <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 lg:px-10">
           <a href="#top" className="flex items-center gap-3" aria-label="3DsTile — на главную">
-            <span className="grid size-8 place-items-center rounded-[3px] bg-navy font-display text-sm font-semibold leading-none text-primary-foreground">3D</span>
-            <span className="font-display text-lg font-semibold uppercase text-ink">3DsTile</span>
+            <img src={logoAsset.url} alt="3DsTile" className="h-8 w-auto" />
+            <span className="h-8 w-px bg-border" aria-hidden="true" />
+            <img src={skolkovoAsset.url} alt="Резидент ИЦ Сколково" className="h-9 w-auto" />
           </a>
           <nav className="hidden items-center gap-8 md:flex" aria-label="Основная навигация">
             <a href="#products" className="text-sm text-steel hover:text-navy">Продукция</a>
